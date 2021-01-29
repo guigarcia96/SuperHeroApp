@@ -11,8 +11,6 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var heroName: String?
     
-    var api = APIRequest()
-    
     var welcome = Welcome(response: "", resultsFor: "", results: [])
     
     var herosModel = [String]()
@@ -29,29 +27,33 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         title = "Heros"
-        
         setupTableView()
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let unwrappedHeroName = heroName?.removeWhitespace() else {return}
+        loadData(heroName: unwrappedHeroName)
+    }
+    
+    func loadData(heroName: String) {
         
-        guard let unwrappedHeroName = heroName else {return}
         
-        api.loadItems(heroName: unwrappedHeroName , onComplete: {(welcome) in
+        APIRequest.loadItems(heroName: heroName , onComplete: {(welcome) in
             self.welcome = welcome
             
+            for result in welcome.results {
+                self.herosModel.append(result.name)
+            }
+            
             DispatchQueue.main.async {
-                for result in welcome.results {
-                    self.herosModel.append(result.name)
-                }
+                
                 self.tableView.reloadData()
             }
             
-        })
+        }){ (error) in
+            print(error)
+        }
     }
     
     func setupTableView() {
@@ -81,3 +83,12 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
 }
+extension String {
+    func replace(string:String, replacement:String) -> String {
+        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+    }
+
+    func removeWhitespace() -> String {
+        return self.replace(string: " ", replacement: "%20")
+    }
+  }

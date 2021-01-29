@@ -9,6 +9,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
+
     
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -35,6 +36,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         view.backgroundColor = .white
         setSearchBarToNavigationBar()
         setupLabelConstraint()
+       
+        
     }
     
     func setSearchBarToNavigationBar() {
