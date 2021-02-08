@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HerosListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -13,7 +14,7 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var welcome = Welcome(response: "", resultsFor: "", results: [])
     
-    var herosModel = [String]()
+    var resultsModel = [Result]()
     
     let tableView = UITableView()
     var safeArea: UILayoutGuide!
@@ -37,17 +38,14 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func loadData(heroName: String) {
-        
-        
         APIRequest.loadItems(heroName: heroName , onComplete: {(welcome) in
             self.welcome = welcome
             
             for result in welcome.results {
-                self.herosModel.append(result.name)
+                self.resultsModel.append(result)
             }
             
             DispatchQueue.main.async {
-                
                 self.tableView.reloadData()
             }
             
@@ -65,19 +63,38 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(ListHeroTableViewCell.self, forCellReuseIdentifier: cellId)
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return herosModel.count
+        return resultsModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let heroCellName = herosModel[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = heroCellName
+        let heroCellName = resultsModel[indexPath.row].name
+        let heroRealName = resultsModel[indexPath.row].biography.fullName
+        let heroImage = resultsModel[indexPath.row].image.url
+        let imageURL = URL(string: heroImage)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? ListHeroTableViewCell else {return UITableViewCell()}
+        cell.heroNameLabel.text = heroCellName
+        cell.heroRealNameLabel.text = heroRealName
+        cell.listImageView.kf.setImage(with: imageURL)
         return cell
+        
+    
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let detailtsHeroVC = DetailsHeroViewController()
+        detailtsHeroVC.heroResult = resultsModel[indexPath.row]
+        
+        navigationController?.pushViewController(detailtsHeroVC, animated: true)
+        
+        
     }
     
     
@@ -87,8 +104,8 @@ extension String {
     func replace(string:String, replacement:String) -> String {
         return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
     }
-
+    
     func removeWhitespace() -> String {
         return self.replace(string: " ", replacement: "%20")
     }
-  }
+}
