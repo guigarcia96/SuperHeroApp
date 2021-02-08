@@ -7,20 +7,26 @@
 
 import UIKit
 
-class DetailsHeroViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class DetailsHeroViewController: UIViewController {
     
     var heroResult:Result?
     var powerstats = [String]()
     
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
-        return cv
+    lazy var listImageView:UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
     }()
     
-    
+    lazy var heroNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Nome do Herói"
+        label.font = .boldSystemFont(ofSize: 17)
+        label.numberOfLines = 0
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,47 +34,36 @@ class DetailsHeroViewController: UIViewController, UICollectionViewDelegate, UIC
         guard let unwrappedHeroResult = heroResult else { return }
         title = unwrappedHeroResult.name
         view.backgroundColor = .white
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(HeroPowerStatsCollectionViewCell.self,
-                                forCellWithReuseIdentifier: "cell")
-        setupCollectionConstraints()
+        setupConstraints()
+        populateData()
         
     }
     
-    func setupCollectionConstraints() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -100).isActive = true
-    }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if let powerstatus = heroResult?.powerstats {
-            powerstats.append(powerstatus.combat)
-            powerstats.append(powerstatus.durability)
-            powerstats.append(powerstatus.intelligence)
-            powerstats.append(powerstatus.power)
-            powerstats.append(powerstatus.speed)
-            powerstats.append(powerstatus.strength)
-        }
-        
+    func setupConstraints() {
+        view.addSubview(listImageView)
+        view.addSubview(heroNameLabel)
        
-        return powerstats.count
+        //need to rewrite the constraints to refact the layout
+        
+        listImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
+        listImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
+        listImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        let imageViewHeightConstraint = listImageView.heightAnchor.constraint(equalToConstant: 150)
+        imageViewHeightConstraint.priority = UILayoutPriority(rawValue: 750)
+        imageViewHeightConstraint.isActive = true
+        
+        heroNameLabel.topAnchor.constraint(equalTo: listImageView.topAnchor).isActive = true
+        heroNameLabel.leadingAnchor.constraint(equalTo: listImageView.trailingAnchor, constant: 16).isActive = true
+        
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HeroPowerStatsCollectionViewCell
-        cell.titleLabel.text = powerstats[indexPath.row]
-        return cell
+    func populateData() {
+        guard let unwrappedHeroResult = heroResult else { return }
+        heroNameLabel.text = unwrappedHeroResult.name
+        let heroImage = URL(string: unwrappedHeroResult.image.url)
+        listImageView.kf.setImage(with: heroImage)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: 100)
-    }
-    
     
 }

@@ -31,11 +31,12 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         setupTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func loadView() {
+        super.loadView()
         guard let unwrappedHeroName = heroName?.removeWhitespace() else {return}
         loadData(heroName: unwrappedHeroName)
     }
+
     
     func loadData(heroName: String) {
         APIRequest.loadItems(heroName: heroName , onComplete: {(welcome) in
