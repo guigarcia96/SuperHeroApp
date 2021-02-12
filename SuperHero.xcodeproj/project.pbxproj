@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		B6C942680C2055D45B81ECC2 /* Pods_SuperHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4BF1EE68147250D3722FC7 /* Pods_SuperHero.framework */; };
 		C46589C825C4746700926FF3 /* ListHeroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46589C725C4746700926FF3 /* ListHeroTableViewCell.swift */; };
-		C46589CF25C480E000926FF3 /* UIImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46589CE25C480E000926FF3 /* UIImageView+URL.swift */; };
 		C4658BF325C9CF9900926FF3 /* DetailsHeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4658BF225C9CF9900926FF3 /* DetailsHeroViewController.swift */; };
-		C4658BF625C9E12700926FF3 /* HeroPowerStatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4658BF525C9E12700926FF3 /* HeroPowerStatsCollectionViewCell.swift */; };
 		C494C81B25C334090024347A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C81A25C334090024347A /* AppDelegate.swift */; };
 		C494C81F25C334090024347A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C81E25C334090024347A /* SearchViewController.swift */; };
 		C494C82425C3340C0024347A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C494C82325C3340C0024347A /* Assets.xcassets */; };
@@ -19,15 +17,16 @@
 		C494C83425C340460024347A /* HerosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C83325C340460024347A /* HerosListViewController.swift */; };
 		C494C83725C349230024347A /* HerosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C83625C349230024347A /* HerosModel.swift */; };
 		C494C83B25C34A290024347A /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494C83A25C34A290024347A /* APIRequest.swift */; };
+		C4B4CD3E25D6F00300D66147 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4CD3D25D6F00300D66147 /* Labels.swift */; };
+		C4B4CD4125D6F47200D66147 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4CD4025D6F47200D66147 /* Images.swift */; };
+		C4B4CD4425D6F87500D66147 /* SearchBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4CD4325D6F87500D66147 /* SearchBars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E4BF1EE68147250D3722FC7 /* Pods_SuperHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D60FE691570191A7486005 /* Pods-SuperHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperHero.debug.xcconfig"; path = "Target Support Files/Pods-SuperHero/Pods-SuperHero.debug.xcconfig"; sourceTree = "<group>"; };
 		C46589C725C4746700926FF3 /* ListHeroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeroTableViewCell.swift; sourceTree = "<group>"; };
-		C46589CE25C480E000926FF3 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		C4658BF225C9CF9900926FF3 /* DetailsHeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHeroViewController.swift; sourceTree = "<group>"; };
-		C4658BF525C9E12700926FF3 /* HeroPowerStatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroPowerStatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C494C81725C334090024347A /* SuperHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C494C81A25C334090024347A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C494C81E25C334090024347A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +36,9 @@
 		C494C83325C340460024347A /* HerosListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerosListViewController.swift; sourceTree = "<group>"; };
 		C494C83625C349230024347A /* HerosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerosModel.swift; sourceTree = "<group>"; };
 		C494C83A25C34A290024347A /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		C4B4CD3D25D6F00300D66147 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		C4B4CD4025D6F47200D66147 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		C4B4CD4325D6F87500D66147 /* SearchBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBars.swift; sourceTree = "<group>"; };
 		D04CC02CD92B0C83D6CEB851 /* Pods-SuperHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperHero.release.xcconfig"; path = "Target Support Files/Pods-SuperHero/Pods-SuperHero.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,20 +92,61 @@
 		C494C81925C334090024347A /* SuperHero */ = {
 			isa = PBXGroup;
 			children = (
+				C4B4CD3C25D6EFE300D66147 /* Service */,
+				C4B4CD3A25D6EFD700D66147 /* Models */,
+				C4B4CD3725D6EFB700D66147 /* TableViewCells */,
+				C4B4CD3625D6EF8C00D66147 /* ViewControllers */,
+				C4B4CD3525D6EF8100D66147 /* Components */,
 				C494C81A25C334090024347A /* AppDelegate.swift */,
-				C494C81E25C334090024347A /* SearchViewController.swift */,
 				C494C82325C3340C0024347A /* Assets.xcassets */,
 				C494C82525C3340C0024347A /* LaunchScreen.storyboard */,
 				C494C82825C3340C0024347A /* Info.plist */,
-				C494C83325C340460024347A /* HerosListViewController.swift */,
-				C494C83625C349230024347A /* HerosModel.swift */,
-				C494C83A25C34A290024347A /* APIRequest.swift */,
-				C46589C725C4746700926FF3 /* ListHeroTableViewCell.swift */,
-				C46589CE25C480E000926FF3 /* UIImageView+URL.swift */,
-				C4658BF225C9CF9900926FF3 /* DetailsHeroViewController.swift */,
-				C4658BF525C9E12700926FF3 /* HeroPowerStatsCollectionViewCell.swift */,
 			);
 			path = SuperHero;
+			sourceTree = "<group>";
+		};
+		C4B4CD3525D6EF8100D66147 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C4B4CD3D25D6F00300D66147 /* Labels.swift */,
+				C4B4CD4025D6F47200D66147 /* Images.swift */,
+				C4B4CD4325D6F87500D66147 /* SearchBars.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C4B4CD3625D6EF8C00D66147 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C494C81E25C334090024347A /* SearchViewController.swift */,
+				C494C83325C340460024347A /* HerosListViewController.swift */,
+				C4658BF225C9CF9900926FF3 /* DetailsHeroViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C4B4CD3725D6EFB700D66147 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				C46589C725C4746700926FF3 /* ListHeroTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		C4B4CD3A25D6EFD700D66147 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C494C83625C349230024347A /* HerosModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C4B4CD3C25D6EFE300D66147 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C494C83A25C34A290024347A /* APIRequest.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,13 +263,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C494C81F25C334090024347A /* SearchViewController.swift in Sources */,
-				C4658BF625C9E12700926FF3 /* HeroPowerStatsCollectionViewCell.swift in Sources */,
 				C494C83725C349230024347A /* HerosModel.swift in Sources */,
+				C4B4CD3E25D6F00300D66147 /* Labels.swift in Sources */,
 				C494C81B25C334090024347A /* AppDelegate.swift in Sources */,
+				C4B4CD4125D6F47200D66147 /* Images.swift in Sources */,
 				C494C83B25C34A290024347A /* APIRequest.swift in Sources */,
 				C494C83425C340460024347A /* HerosListViewController.swift in Sources */,
+				C4B4CD4425D6F87500D66147 /* SearchBars.swift in Sources */,
 				C4658BF325C9CF9900926FF3 /* DetailsHeroViewController.swift in Sources */,
-				C46589CF25C480E000926FF3 /* UIImageView+URL.swift in Sources */,
 				C46589C825C4746700926FF3 /* ListHeroTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
