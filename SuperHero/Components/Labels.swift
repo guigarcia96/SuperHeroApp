@@ -35,6 +35,34 @@ class Labels {
         return label
     }()
     
+    lazy var commonLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Padrão"
+        label.font = .boldSystemFont(ofSize: 17)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var view: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
+    let roundedLabel:UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.backgroundColor = .red
+        label.textAlignment = .center
+        label.layer.cornerRadius = 6
+        label.layer.masksToBounds = true
+        return label
+    }()
+    
+    
     lazy var tableViewHeroFullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +72,4 @@ class Labels {
         label.textColor = .systemGray2
         return label
     }()
-    
-    
 }

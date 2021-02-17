@@ -52,9 +52,7 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
         }){ (error) in
-            
             self.stopLoadingViewIndicatorError()
-            
         }
         
     }
