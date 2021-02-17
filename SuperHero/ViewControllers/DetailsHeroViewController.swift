@@ -24,14 +24,10 @@ class DetailsHeroViewController: UIViewController {
     lazy var powerValueLabel = Labels.init().roundedLabel
     lazy var strenghtValueLabel = Labels.init().roundedLabel
     lazy var speedValueLabel = Labels.init().roundedLabel
+    lazy var powerStatsView = Views.init().powerStatsView
+    lazy var scrollView = Views.init().scrollView
+    lazy var contentView = Views.init().contentView
     
-    
-    lazy var powerStatsView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let unwrappedHeroResult = heroResult else { return }
@@ -44,9 +40,11 @@ class DetailsHeroViewController: UIViewController {
     }
     
     func setupViews() {
-        view.addSubview(heroImage)
-        view.addSubview(heroFullName)
-        view.addSubview(powerStatsView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(heroImage)
+        contentView.addSubview(heroFullName)
+        contentView.addSubview(powerStatsView)
         powerStatsView.addSubview(combatLabel)
         powerStatsView.addSubview(combatValueLabel)
         powerStatsView.addSubview(durabilytLabel)
@@ -63,21 +61,31 @@ class DetailsHeroViewController: UIViewController {
     
     func setupConstraints() {
         
-        heroImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
-        heroImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        
+        heroImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24).isActive = true
+        heroImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         heroImage.widthAnchor.constraint(equalToConstant: 160).isActive = true
         let imageViewHeightConstraint = heroImage.heightAnchor.constraint(equalToConstant: 160)
         imageViewHeightConstraint.priority = UILayoutPriority(rawValue: 999)
         imageViewHeightConstraint.isActive = true
         
         heroFullName.topAnchor.constraint(equalTo: heroImage.bottomAnchor, constant: 24).isActive = true
-        heroFullName.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        heroFullName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
         powerStatsView.topAnchor.constraint(equalTo: heroFullName.bottomAnchor, constant: 48).isActive = true
-        powerStatsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        powerStatsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-        powerStatsView.heightAnchor.constraint(equalToConstant: 260).isActive = true
-        
+        powerStatsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        powerStatsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        powerStatsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        powerStatsView.heightAnchor.constraint(equalToConstant: 180).isActive = true
         
         combatLabel.topAnchor.constraint(equalTo: powerStatsView.topAnchor).isActive = true
         combatLabel.trailingAnchor.constraint(equalTo: durabilytLabel.leadingAnchor, constant: -54).isActive = true
@@ -104,7 +112,7 @@ class DetailsHeroViewController: UIViewController {
         inteligenceValueLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         powerLabel.topAnchor.constraint(equalTo: durabilityValueLabel.bottomAnchor, constant: 24).isActive = true
-        powerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        powerLabel.centerXAnchor.constraint(equalTo: powerStatsView.centerXAnchor).isActive = true
         
         powerValueLabel.topAnchor.constraint(equalTo: powerLabel.bottomAnchor, constant: 16).isActive = true
         powerValueLabel.centerXAnchor.constraint(equalTo: powerStatsView.centerXAnchor).isActive = true
