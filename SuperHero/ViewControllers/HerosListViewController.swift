@@ -119,6 +119,7 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.heroNameLabel.text = heroCellName
         cell.heroRealNameLabel.text = heroRealName
         cell.listImageView.kf.setImage(with: imageURL)
+        cell.layer.cornerRadius  = 4
         return cell
     }
     
@@ -130,6 +131,8 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         navigationController?.pushViewController(detailtsHeroVC, animated: true)
     }
+    
+   
 }
 extension String {
     func replace(string:String, replacement:String) -> String {
@@ -140,3 +143,5 @@ extension String {
         return self.replace(string: " ", replacement: "%20")
     }
 }
+
+

@@ -27,6 +27,16 @@ class DetailsHeroViewController: UIViewController {
     lazy var powerStatsView = Views.init().powerStatsView
     lazy var scrollView = Views.init().scrollView
     lazy var contentView = Views.init().contentView
+    lazy var birthLabel = Labels.init().commonLabel
+    lazy var birthLabelValue = Labels.init().grayLabel
+    lazy var publisher = Labels.init().commonLabel
+    lazy var publisherValue = Labels.init().grayLabel
+    lazy var firstAppearence = Labels.init().commonLabel
+    lazy var firstAppearenceValue = Labels.init().grayLabel
+    lazy var genderLabel = Labels.init().commonLabel
+    lazy var genderValueLabel = Labels.init().grayLabel
+    lazy var raceLabel = Labels.init().commonLabel
+    lazy var raceValueLabel = Labels.init().grayLabel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +55,16 @@ class DetailsHeroViewController: UIViewController {
         contentView.addSubview(heroImage)
         contentView.addSubview(heroFullName)
         contentView.addSubview(powerStatsView)
+        contentView.addSubview(birthLabel)
+        contentView.addSubview(birthLabelValue)
+        contentView.addSubview(publisher)
+        contentView.addSubview(publisherValue)
+        contentView.addSubview(firstAppearence)
+        contentView.addSubview(firstAppearenceValue)
+        contentView.addSubview(genderLabel)
+        contentView.addSubview(genderValueLabel)
+        contentView.addSubview(raceLabel)
+        contentView.addSubview(raceValueLabel)
         powerStatsView.addSubview(combatLabel)
         powerStatsView.addSubview(combatValueLabel)
         powerStatsView.addSubview(durabilytLabel)
@@ -81,9 +101,8 @@ class DetailsHeroViewController: UIViewController {
         heroFullName.topAnchor.constraint(equalTo: heroImage.bottomAnchor, constant: 24).isActive = true
         heroFullName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
-        powerStatsView.topAnchor.constraint(equalTo: heroFullName.bottomAnchor, constant: 48).isActive = true
+        powerStatsView.topAnchor.constraint(equalTo: heroFullName.bottomAnchor, constant: 24).isActive = true
         powerStatsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
-        powerStatsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         powerStatsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
         powerStatsView.heightAnchor.constraint(equalToConstant: 180).isActive = true
         
@@ -135,27 +154,72 @@ class DetailsHeroViewController: UIViewController {
         strenghtValueLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
         strenghtValueLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
+        birthLabel.topAnchor.constraint(equalTo: powerStatsView.bottomAnchor, constant: 24).isActive = true
+        birthLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
+        birthLabelValue.topAnchor.constraint(equalTo: birthLabel.bottomAnchor, constant: 8).isActive = true
+        birthLabelValue.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        birthLabelValue.widthAnchor.constraint(equalToConstant: 300).isActive = true
         
+        publisher.topAnchor.constraint(equalTo: birthLabelValue.bottomAnchor, constant: 16).isActive = true
+        publisher.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        
+        publisherValue.topAnchor.constraint(equalTo: publisher.bottomAnchor, constant: 8).isActive = true
+        publisherValue.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        publisherValue.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        firstAppearence.topAnchor.constraint(equalTo: publisherValue.bottomAnchor, constant: 16).isActive = true
+        firstAppearence.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        
+        firstAppearenceValue.topAnchor.constraint(equalTo: firstAppearence.bottomAnchor, constant: 8).isActive = true
+        firstAppearenceValue.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        firstAppearenceValue.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        genderLabel.topAnchor.constraint(equalTo: firstAppearenceValue.bottomAnchor, constant: 16).isActive = true
+        genderLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        
+        genderValueLabel.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 8).isActive = true
+        genderValueLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        genderValueLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        raceLabel.topAnchor.constraint(equalTo: genderValueLabel.bottomAnchor, constant: 16).isActive = true
+        raceLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        
+        raceValueLabel.topAnchor.constraint(equalTo: raceLabel.bottomAnchor, constant: 8).isActive = true
+        raceValueLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        raceValueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -28).isActive = true
+        raceValueLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+
     }
+    
+    
     func populateData() {
         if let hero = heroResult {
             heroFullName.text = hero.biography.fullName.isEmpty ? "No full name available" : hero.biography.fullName
             let heroImageURL = URL(string: hero.image.url)
             heroImage.kf.setImage(with: heroImageURL)
             durabilytLabel.text = "Durability"
-            durabilityValueLabel.text = hero.powerstats.durability
             combatLabel.text = "Combat"
             inteligenceLabel.text = "Inteligence"
-            durabilityValueLabel.text = hero.powerstats.durability
-            combatValueLabel.text = hero.powerstats.combat
-            inteligenceValueLabel.text = hero.powerstats.intelligence
-            powerLabel.text = "Power"
-            powerValueLabel.text = hero.powerstats.power
             strenghtLabel.text = "Strenght"
-            strenghtValueLabel.text = hero.powerstats.strength
+            powerLabel.text = "Power"
             speedLabel.text = "Speed"
-            speedValueLabel.text = hero.powerstats.speed
+            durabilityValueLabel.text = hero.powerstats.durability == "null" ? "N/A" : hero.powerstats.durability
+            combatValueLabel.text = hero.powerstats.combat == "null" ? "N/A" : hero.powerstats.combat
+            inteligenceValueLabel.text = hero.powerstats.intelligence == "null" ? "N/A" : hero.powerstats.intelligence
+            powerValueLabel.text = hero.powerstats.power == "null" ? "N/A" : hero.powerstats.power
+            strenghtValueLabel.text = hero.powerstats.strength == "null" ? "N/A" : hero.powerstats.strength
+            speedValueLabel.text = hero.powerstats.speed == "null" ? "N/A" : hero.powerstats.speed
+            birthLabel.text = "Place of Birth"
+            birthLabelValue.text = hero.biography.placeOfBirth == "-" ? "Place of birth unknown" : hero.biography.placeOfBirth
+            publisher.text = "Publisher"
+            publisherValue.text = hero.biography.publisher == "null" ? "Publisher not available" : hero.biography.publisher
+            firstAppearence.text = "First Appearence"
+            firstAppearenceValue.text = hero.biography.firstAppearance == "-" ? "Firt appearence unknown" : hero.biography.firstAppearance
+            genderLabel.text = "Gender"
+            genderValueLabel.text = hero.appearance.gender == "-" ? "Unknowed Gender" : hero.appearance.gender
+            raceLabel.text = "Race"
+            raceValueLabel.text = hero.appearance.race == "null" ? "Unknowed Race" : hero.appearance.race
         }
         
     }

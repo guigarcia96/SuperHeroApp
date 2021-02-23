@@ -13,6 +13,8 @@ class Labels {
     var grayLabel:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.textColor = .systemGray
         return label
     }()
