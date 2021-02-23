@@ -6,3 +6,7 @@ Search and see details about your favorite Super Hero.
 ## Requirements
 - Xcode 12
 
+## Thank You!
+
+Guilherme Moraes - [Linkedin](https://www.linkedin.com/in/ggarciamoraes/) http://meublogdev.netlify.app/ 
+
