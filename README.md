@@ -8,5 +8,5 @@ Search and see details about your favorite Super Hero.
 
 ## Thank You!
 
-Guilherme Moraes - [Linkedin](https://www.linkedin.com/in/ggarciamoraes/) http://meublogdev.netlify.app/ 
+Guilherme Moraes - [Linkedin](https://www.linkedin.com/in/ggarciamoraes/) - http://meublogdev.netlify.app/ 
 
