@@ -22,8 +22,8 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startLoadingViewIndicator()
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
         safeArea = view.layoutMarginsGuide
         tableView.dataSource = self
         tableView.delegate = self
@@ -31,11 +31,12 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         setupTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func loadView() {
+        super.loadView()
         guard let unwrappedHeroName = heroName?.removeWhitespace() else {return}
         loadData(heroName: unwrappedHeroName)
     }
+    
     
     func loadData(heroName: String) {
         APIRequest.loadItems(heroName: heroName , onComplete: {(welcome) in
@@ -46,12 +47,14 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             DispatchQueue.main.async {
+                self.stopLoadingViewIndicator()
                 self.tableView.reloadData()
             }
             
         }){ (error) in
-            print(error)
+            self.stopLoadingViewIndicatorError()
         }
+        
     }
     
     func setupTableView() {
@@ -64,6 +67,41 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         tableView.register(ListHeroTableViewCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    func startLoadingViewIndicator() {
+        let alert = UIAlertController(title: nil, message: "Loading Data", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func stopLoadingViewIndicator() {
+        
+        self.dismiss(animated: false, completion: nil)
+    }
+    func stopLoadingViewIndicatorError() {
+        
+        DispatchQueue.main.async {
+            self.dismiss(animated: false, completion: self.showErrorAlert)
+        }
+        
+        
+    }
+    
+    func returnToMainScene(action: UIAlertAction! = nil) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func showErrorAlert() {
+        let ac = UIAlertController(title: "Request Error", message: "No results are found, please try again", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: returnToMainScene))
+        present(ac, animated: true)
     }
     
     
@@ -81,9 +119,8 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.heroNameLabel.text = heroCellName
         cell.heroRealNameLabel.text = heroRealName
         cell.listImageView.kf.setImage(with: imageURL)
+        cell.layer.cornerRadius  = 4
         return cell
-        
-    
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -93,12 +130,9 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         detailtsHeroVC.heroResult = resultsModel[indexPath.row]
         
         navigationController?.pushViewController(detailtsHeroVC, animated: true)
-        
-        
     }
     
-    
-    
+   
 }
 extension String {
     func replace(string:String, replacement:String) -> String {
@@ -109,3 +143,5 @@ extension String {
         return self.replace(string: " ", replacement: "%20")
     }
 }
+
+

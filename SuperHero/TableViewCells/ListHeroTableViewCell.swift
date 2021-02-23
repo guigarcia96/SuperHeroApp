@@ -9,31 +9,11 @@ import UIKit
 
 class ListHeroTableViewCell: UITableViewCell {
     
-    lazy var listImageView:UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
-        return image
-        }()
+    lazy var listImageView = Images.init().tableViewCellImage
     
-    lazy var heroNameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Nome do Herói"
-        label.font = .boldSystemFont(ofSize: 17)
-        label.numberOfLines = 0
-        return label
-    }()
+    lazy var heroNameLabel = Labels.init().tableViewHeroNameLabel
     
-    lazy var heroRealNameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Nome real do herói"
-        label.numberOfLines = 0
-        label.font = label.font.withSize(12)
-        label.textColor = .systemGray2
-        return label
-    }()
+    lazy var heroRealNameLabel = Labels.init().tableViewHeroFullNameLabel
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,7 +33,7 @@ class ListHeroTableViewCell: UITableViewCell {
         listImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         listImageView.widthAnchor.constraint(equalToConstant: 56).isActive = true
         let imageViewHeightConstraint = listImageView.heightAnchor.constraint(equalToConstant: 56)
-        imageViewHeightConstraint.priority = UILayoutPriority(rawValue: 750)
+        imageViewHeightConstraint.priority = UILayoutPriority(rawValue: 999)
         imageViewHeightConstraint.isActive = true
         
         heroNameLabel.topAnchor.constraint(equalTo: listImageView.topAnchor).isActive = true

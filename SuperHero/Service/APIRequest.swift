@@ -44,7 +44,7 @@ class APIRequest {
                         let welcome = try JSONDecoder().decode(Welcome.self, from: data)
                         onComplete(welcome)
                     } catch {
-                        print(error.localizedDescription)
+                        onError(.noData)
                     }
                 }else {
                     print ("Erro ao carregar")
