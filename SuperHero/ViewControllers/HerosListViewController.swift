@@ -132,7 +132,16 @@ class HerosListViewController: UIViewController, UITableViewDelegate, UITableVie
         navigationController?.pushViewController(detailtsHeroVC, animated: true)
     }
     
-   
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        // MARK: - Left to right animation
+        cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
+        UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row), animations: {
+            cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
+        })
+    }
+    
+    
 }
 extension String {
     func replace(string:String, replacement:String) -> String {

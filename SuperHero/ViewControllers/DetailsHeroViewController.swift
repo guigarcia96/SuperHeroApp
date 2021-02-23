@@ -191,8 +191,6 @@ class DetailsHeroViewController: UIViewController {
         raceValueLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
 
     }
-    
-    
     func populateData() {
         if let hero = heroResult {
             heroFullName.text = hero.biography.fullName.isEmpty ? "No full name available" : hero.biography.fullName
@@ -215,17 +213,13 @@ class DetailsHeroViewController: UIViewController {
             publisher.text = "Publisher"
             publisherValue.text = hero.biography.publisher == "null" ? "Publisher not available" : hero.biography.publisher
             firstAppearence.text = "First Appearence"
-            firstAppearenceValue.text = hero.biography.firstAppearance == "-" ? "Firt appearence unknown" : hero.biography.firstAppearance
+            firstAppearenceValue.text = hero.biography.firstAppearance == "-" ? "First appearance unknown" : hero.biography.firstAppearance
             genderLabel.text = "Gender"
-            genderValueLabel.text = hero.appearance.gender == "-" ? "Unknowed Gender" : hero.appearance.gender
+            genderValueLabel.text = hero.appearance.gender == "-" ? "Unknown Gender" : hero.appearance.gender
             raceLabel.text = "Race"
-            raceValueLabel.text = hero.appearance.race == "null" ? "Unknowed Race" : hero.appearance.race
+            raceValueLabel.text = hero.appearance.race == "null" ? "Unknown Race" : hero.appearance.race
         }
         
     }
     
 }
-
-
-
-
